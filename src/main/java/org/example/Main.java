@@ -6,10 +6,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Blockchain blockchain = new Blockchain();
-        ArrayList<Block> blockChainData = blockchain.createChain();
+        ArrayList<Block> blockChain = Blockchain.createChain();
 
-        String blockchainStr = new GsonBuilder().setPrettyPrinting().create().toJson(blockChainData);
-        System.out.println(blockchainStr);
+        boolean integrityCheck = Blockchain.integrityCheck();
+        System.out.println("Is the blockchain valid - " + integrityCheck);
     }
 }
