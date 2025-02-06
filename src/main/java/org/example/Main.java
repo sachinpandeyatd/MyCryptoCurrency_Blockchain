@@ -10,5 +10,7 @@ public class Main {
 
         boolean integrityCheck = Blockchain.integrityCheck();
         System.out.println("Is the blockchain valid - " + integrityCheck);
+
+        Wallet wallet = new Wallet();
     }
 }

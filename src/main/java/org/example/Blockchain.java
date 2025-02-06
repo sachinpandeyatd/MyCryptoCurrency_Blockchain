@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Blockchain {
     private static ArrayList<Block> blockchain = new ArrayList<>();
-    private static int difficulty = 5;
+    private static int difficulty = 2;
 
     public static ArrayList<Block> createChain (){
         blockchain.add(new Block("Hi im the first block", "0"));
