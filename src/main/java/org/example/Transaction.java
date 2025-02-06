@@ -1,5 +1,7 @@
 package org.example;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 import java.security.*;
 import java.util.ArrayList;
 
@@ -26,12 +28,12 @@ public class Transaction {
                 Helper.getStringFromKey(recipient) + Float.toString(sequence));
     }
 
-    private void generateSignature(PrivateKey privateKey){
+    public void generateSignature(PrivateKey privateKey){
         String data = Helper.getStringFromKey(sender) + Helper.getStringFromKey(recipient) + Float.toString(value);
         signature = Helper.applyEcdsaSignature(privateKey, data);
     }
 
-    private boolean verifySignature(){
+    public boolean verifySignature(){
         String data = Helper.getStringFromKey(sender) + Helper.getStringFromKey(recipient) + Float.toString(value);
         return Helper.verifyEcdsaSignature(sender, data, signature);
     }
