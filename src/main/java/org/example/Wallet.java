@@ -35,7 +35,7 @@ public class Wallet {
 //            System.out.println("Public Key (Y coordinate): " + point.getAffineY().toString(16));
 //
 //            // Print private key
-            
+
 //            ECPrivateKey ecPrivateKey = (ECPrivateKey) privateKey;
 //            System.out.println("Private Key (secret value): " + ecPrivateKey.getS().toString(16));
         } catch (InvalidAlgorithmParameterException | NoSuchProviderException | NoSuchAlgorithmException e) {

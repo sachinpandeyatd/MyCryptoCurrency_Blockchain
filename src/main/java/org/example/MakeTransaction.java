@@ -24,6 +24,5 @@ public class MakeTransaction {
         transaction.generateSignature(walletA.getPrivateKey());
 
         System.out.println("Is signature verified - " + transaction.verifySignature());
-
     }
 }
