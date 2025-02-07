@@ -11,8 +11,8 @@ public class Transaction {
     private PublicKey recipient;
     private float value;
     private byte[] signature;
-    private ArrayList<TransactionInput> inputs = new ArrayList<>();
-    private ArrayList<TransactionOutput> outputs = new ArrayList<>();
+    public ArrayList<TransactionInput> inputs = new ArrayList<>();
+    public ArrayList<TransactionOutput> outputs = new ArrayList<>();
     private static int sequence = 0;
 
     public Transaction(PublicKey sender, PublicKey recipient, float value, ArrayList<TransactionInput> inputs) {
@@ -46,13 +46,13 @@ public class Transaction {
 
         // gather transaction inputs to check if they are unspent
         for (TransactionInput input : inputs){
-            input.UTXO = (CryptoCoin.UTXOs.get(input.getTransactionId()));
+            input.UTXO = (Blockchain.UTXOs.get(input.getTransactionOutputId()));
         }
 
         //check if transaction is valid
-        if(getInputValue() < CryptoCoin.minimumTransaction){
+        if(getInputValue() < Blockchain.minimumTransaction){
             System.out.println("Transaction input too small");
-            System.out.println("Minimum " + CryptoCoin.minimumTransaction + " of value of transaction required.");
+            System.out.println("Minimum " + Blockchain.minimumTransaction + " of value of transaction required.");
             return false;
         }
 
@@ -64,19 +64,19 @@ public class Transaction {
 
         //add outputs to the unspent list
         for (TransactionOutput output : outputs){
-            CryptoCoin.UTXOs.put(output.getId(), output);
+            Blockchain.UTXOs.put(output.getId(), output);
         }
 
         //remove transaction inputs from UTXO lists as spent:
         for (TransactionInput input : inputs){
             if(input.UTXO == null) continue;
-            CryptoCoin.UTXOs.remove(input.UTXO.getId());
+            Blockchain.UTXOs.remove(input.UTXO.getId());
         }
 
         return true;
     }
 
-    private float getInputValue() {
+    public float getInputValue() {
         float total = 0;
         for (TransactionInput input : inputs){
             if(input.UTXO == null) continue;;
@@ -85,11 +85,31 @@ public class Transaction {
         return total;
     }
 
-    private float getOutputValue(){
+    public float getOutputValue(){
         float total = 0;
         for (TransactionOutput output : outputs){
             total += output.getValue();
         }
         return total;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public PublicKey getRecipient() {
+        return recipient;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public PublicKey getSender() {
+        return sender;
     }
 }

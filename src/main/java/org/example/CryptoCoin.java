@@ -15,7 +15,7 @@ public class CryptoCoin {
     public static Transaction genesisTransaction;
 
     public void process(){
-        ArrayList<Block> blockChain = Blockchain.createChain();
+        Blockchain.run();
 
         boolean integrityCheck = Blockchain.integrityCheck();
         System.out.println("Is the blockchain valid - " + integrityCheck);
