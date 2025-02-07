@@ -2,9 +2,13 @@ package org.example;
 
 public class TransactionInput {
     private String transactionId;
-    private TransactionOutput UTXO;
+    public TransactionOutput UTXO;
 
     public TransactionInput(String transactionId){
         this.transactionId = transactionId;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
     }
 }

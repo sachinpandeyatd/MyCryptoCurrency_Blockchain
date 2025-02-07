@@ -6,6 +6,23 @@ public class TransactionOutput {
     private String id;
     private PublicKey recipient;
     private float value;
+
+    public String getParentTransactionId() {
+        return parentTransactionId;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public PublicKey getRecipient() {
+        return recipient;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     private String parentTransactionId;
 
     public TransactionOutput(PublicKey recipient, float value, String parentTransactionId){
